@@ -3,6 +3,7 @@ package uz.gita.broadcast_lesson2.worker
 import android.app.NotificationChannel
 import android.app.NotificationManager
 import android.content.Context
+import android.content.Intent
 import android.content.pm.ServiceInfo
 import android.os.Build
 import android.util.Log
@@ -26,6 +27,11 @@ class RemainderWorkManager(context: Context, workerParameters: WorkerParameters)
             setForeground(createForegroundInfo(applicationContext))
         }catch (e:Exception){
             return Result.failure()
+        }
+        Intent().also { intent ->
+            intent.setAction("uz.gita.broadcast.CUSTOM_RECEIVER")
+            intent.putExtra("data", "Salom dangasalar!")
+            applicationContext.sendBroadcast(intent)
         }
         delay(10000)
         Log.d("TTT", "doWork: Success")
