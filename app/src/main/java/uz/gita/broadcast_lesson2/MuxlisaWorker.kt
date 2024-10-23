@@ -16,14 +16,20 @@ import kotlinx.coroutines.delay
 class MuxlisaWorker(context: Context, workerParameters: WorkerParameters) :
     CoroutineWorker(context, workerParameters) {
     override suspend fun doWork(): Result {
+        try {
+            setForeground(getMyForegroundInfo(applicationContext))
+        }catch (e:Exception){
+            Log.d("TTT", "doWork: ${e.message}")
+        }
         repeat(5) {
             delay(1000)
             setProgress(workDataOf("Muxlis" to "Xolisbek"))
         }
         delay(8000)
         Log.d("TTT", "doWork: Result.success()")
-        setForeground(getMyForegroundInfo(applicationContext))
-        return Result.retry()
+
+
+        return Result.success()
     }
 
     override suspend fun getForegroundInfo(): ForegroundInfo {
