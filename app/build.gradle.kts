@@ -66,4 +66,9 @@ dependencies {
     androidTestImplementation(libs.androidx.ui.test.junit4)
     debugImplementation(libs.androidx.ui.tooling)
     debugImplementation(libs.androidx.ui.test.manifest)
+
+    //WokrManager bn ishlash uchun quidagi kutubxonani yuklab olishimiz kk.
+    //Batafsil: https://developer.android.com/develop/background-work/background-tasks/persistent/getting-started
+    implementation(libs.androidx.work.runtime.ktx)
+
 }
